@@ -18,3 +18,9 @@ youtube.com#@%#//scriptlet('json-prune-fetch-response', 'playerResponse.adPlacem
 ||wowumounsou.com^$document
 ||whauwhoatchee.com^
 embednow.top##div[style*="z-index: 2147483647"]:last-of-type
+
+! Remove promoted posts from X's API responses; ports of AdGuard Base rules whose JSONPath Zen can't parse
+||x.com/i/api/graphql/*/HomeTimeline$jsonprune=$.data.home.home_timeline_urt.instructions..entries[?(@.content.itemContent.promotedMetadata)]
+||x.com/i/api/graphql/*/HomeLatestTimeline$jsonprune=$.data.home.home_timeline_urt.instructions..entries[?(@.content.itemContent.promotedMetadata)]
+||x.com/i/api/graphql/*/ImmersiveMedia$jsonprune=$.data.immersiveMedia.timeline.instructions..entries[?(@.content.itemContent.promotedMetadata)]
+||x.com/i/api/graphql/*/TweetDetail$jsonprune=$.data.threaded_conversation_with_injections_v2.instructions..entries[?(@.content.items..item.itemContent.promotedMetadata.advertiser_results)]
